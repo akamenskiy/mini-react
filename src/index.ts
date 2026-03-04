@@ -1,5 +1,6 @@
 import { createElement } from './createElement';
 import { createFiberTree } from './fiber';
+import { render } from './renderer';
 
 const element = createElement(
   'div',
@@ -18,3 +19,7 @@ const vnode = createElement(
 );
 const fiber = createFiberTree(vnode);
 console.log(fiber);
+
+render(element, document.getElementById('root')!);
+
+export { createElement, render, createElement as jsx };
