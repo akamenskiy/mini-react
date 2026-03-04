@@ -3,6 +3,7 @@ import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
+import globals from 'globals';
 
 export default [
   {
@@ -16,6 +17,10 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
       },
     },
     plugins: {
