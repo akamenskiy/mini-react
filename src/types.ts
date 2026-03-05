@@ -1,8 +1,9 @@
 export type VNode = {
-  type: string;
+  type: string | FunctionComponent;
   props: {
     [key: string]: any;
-    children: (VNode | string | number)[];
+    nodeValue?: string;
+    children: VNode[];
   };
 };
 
