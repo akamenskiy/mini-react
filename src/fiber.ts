@@ -21,18 +21,16 @@ export const createFiberTree = (
   const fiber = createFiber(vnode.type, vnode.props);
   fiber.parent = parent;
 
+  if (vnode.type === 'TEXT_ELEMENT') {
+    return fiber;
+  }
+
   const children = vnode.props.children;
 
   if (children && children.length > 0) {
     let previousSibling: Fiber | null = null;
 
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-
-      if (typeof child === 'string' || typeof child === 'number') {
-        continue;
-      }
-
+    for (const child of children) {
       const childFiber = createFiberTree(child, fiber);
 
       if (previousSibling === null) {
