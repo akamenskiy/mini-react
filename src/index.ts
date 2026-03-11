@@ -1,27 +1,13 @@
 import { createElement } from './createElement';
-import { createFiberTree } from './fiber';
 import { render } from './renderer';
 
 const element = createElement(
   'div',
-  null,
-  'Hello',
-  createElement('span', null, 'World'),
-  42,
-  null,
-  false,
+  { id: 'container', className: 'app' },
+  createElement('h1', { className: 'title' }, 'Hello, mini-React!'),
+  createElement('p', null, 'This is rendered to real DOM!'),
+  createElement('button', null, 'Click me'),
 );
-
-console.log(JSON.stringify(element, null, 2));
-
-const vnode = createElement(
-  'div',
-  null,
-  createElement('h1', null, 'Hello'),
-  createElement('p', null, 'World'),
-);
-const fiber = createFiberTree(vnode);
-console.log(fiber);
 
 render(element, document.getElementById('root')!);
 

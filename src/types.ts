@@ -7,7 +7,13 @@ export type VNode = {
   };
 };
 
-export type EffectTag = 'PLACEMENT' | 'UPDATE' | 'DELETION';
+export const EffectTag = {
+  PLACEMENT: 'PLACEMENT',
+  UPDATE: 'UPDATE',
+  DELETION: 'DELETION',
+} as const;
+
+export type EffectTagType = (typeof EffectTag)[keyof typeof EffectTag];
 
 export type FunctionComponent = (props: any) => VNode;
 
@@ -23,5 +29,5 @@ export type Fiber = {
   sibling: Fiber | null;
   parent: Fiber | null;
   alternate: Fiber | null;
-  effectTag: EffectTag | null;
+  effectTag: EffectTagType | null;
 };
